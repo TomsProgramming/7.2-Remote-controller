@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DroneWars · Spelscherm</title>
+  <link rel="stylesheet" href="/css/game.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.165.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <!-- HUD: linksboven titel -->
+  <header class="hud hud--top-left">
+    <div class="brand">🚁 <strong>DroneWars</strong></div>
+    <div class="status" id="statusText">Lobby</div>
+  </header>
+
+  <!-- Spelerslijst -->
+  <aside class="hud hud--left panel" id="playerList">
+    <h3>Spelers (<span id="playerCount">0</span>)</h3>
+    <ul id="players"></ul>
+  </aside>
+
+  <!-- QR-code paneel rechtsboven -->
+  <aside class="hud hud--right panel qr" id="qrPanel">
+    <h3>Doe mee</h3>
+    <div class="roomCode">
+      Lobbycode:
+      <strong id="roomCode">----</strong>
+    </div>
+    <img id="qrImg" alt="QR-code" />
+    <div class="url" id="qrUrl"></div>
+    <p class="hint">Scan met je telefoon om mee te spelen</p>
+  </aside>
+
+  <!-- Start knop (alleen in lobby zichtbaar) -->
+  <div class="hud hud--bottom-center" id="startBar">
+    <button id="startBtn" class="btn btn--primary" disabled>Wacht op spelers…</button>
+    <button id="backBtn" class="btn btn--ghost">Terug naar home</button>
+  </div>
+
+  <!-- Overlay voor game-over -->
+  <div class="overlay hidden" id="overlay">
+    <div class="overlay__card">
+      <h2 id="overlayTitle">Game Over</h2>
+      <p id="overlaySub"></p>
+      <div class="overlay__scores" id="overlayScores"></div>
+      <button id="rematchBtn" class="btn btn--primary">Terug naar lobby</button>
+    </div>
+  </div>
+
+  <!-- Kill-feed -->
+  <div class="killfeed" id="killfeed"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/js/game.js"></script>
+</body>
+</html>

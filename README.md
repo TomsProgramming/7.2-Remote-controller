@@ -28,6 +28,27 @@ Multiplayer drone-gevechtsspel in de browser. Desktop = spelscherm (Three.js), t
 | Nipple.js | Virtuele joysticks op telefoon |
 | qrcode (npm) | QR-code generatie |
 
+## Installeren & starten
+
+```bash
+npm install
+npm start
+```
+
+Open vervolgens op de desktop `http://<ip>:3000` en klik **Nieuwe lobby**.
+
+## Zo speel je (met vrienden)
+
+1. **Host:** opent `http://<ip>:3000` op de desktop en klikt op *Nieuwe lobby*.
+   Het spelscherm toont een 4-letter **lobbycode** en een **QR-code**.
+2. **Vrienden:** scannen de QR-code met hun telefoon **of** openen zelf
+   `http://<ip>:3000` en voeren de lobbycode in. Ze vullen hun naam in en komen in de lobby.
+3. **Host:** klikt op *Start spel* zodra iedereen in de lobby staat.
+4. Op de telefoon krijgen spelers twee joysticks (links = bewegen, rechts = richten) en een grote schietknop.
+5. Laatste drone die overblijft wint. De host kan daarna terug naar de lobby voor een nieuwe ronde.
+
+> Alle spelers moeten op hetzelfde netwerk zitten als de server (of de server moet publiek bereikbaar zijn).
+
 ## Deadlines
 
 | Mijlpaal | Datum |
