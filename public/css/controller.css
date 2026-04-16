@@ -1,0 +1,298 @@
+:root {
+  --bg: #070b14;
+  --bg-2: #0e1526;
+  --fg: #e6ecff;
+  --muted: #8892b0;
+  --accent: #4dabff;
+  --accent-2: #ff4d6d;
+  --panel: rgba(20, 28, 48, 0.85);
+  --panel-border: rgba(77, 171, 255, 0.22);
+  --radius: 14px;
+  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+
+html, body {
+  margin: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(77, 171, 255, 0.2), transparent 45%),
+    radial-gradient(circle at 80% 90%, rgba(255, 77, 109, 0.18), transparent 45%),
+    linear-gradient(160deg, #070b14 0%, #0e1526 100%);
+  color: var(--fg);
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+}
+
+.screen.hidden { display: none; }
+
+.brand {
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Join scherm ─────────────────────────────────────────── */
+.joinForm {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+.joinForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.joinForm input {
+  padding: 14px 16px;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--fg);
+  outline: none;
+}
+#codeInput {
+  text-align: center;
+  letter-spacing: 10px;
+  font-weight: 800;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+.joinForm input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 171, 255, 0.25);
+}
+.err { color: var(--accent-2); font-size: 14px; margin: 0; min-height: 1em; text-align: center; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; text-align: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--fg);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: none;
+  box-shadow: 0 8px 20px rgba(77, 171, 255, 0.35);
+  padding: 16px 22px;
+  font-size: 18px;
+}
+.btn--ghost { background: transparent; }
+
+/* ── Wait scherm ─────────────────────────────────────────── */
+.waitInfo {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+.waitInfo .code {
+  margin-top: 6px;
+  font-size: 36px;
+  letter-spacing: 12px;
+  font-weight: 900;
+  color: var(--accent);
+}
+.youAre {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.colorDot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px currentColor;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Play scherm ─────────────────────────────────────────── */
+.screen--play {
+  justify-content: space-between;
+  padding: 16px;
+}
+.topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+.me { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.hp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.hpBar {
+  width: 110px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  display: inline-block;
+}
+.hpBar > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #4dff88, #ffd24d, #ff4d6d);
+  transition: width 0.15s ease;
+}
+#hpText { min-width: 28px; text-align: right; color: var(--fg); font-weight: 700; }
+
+.joyArea {
+  flex: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+.joyBox {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 220px;
+}
+.joyLabel {
+  position: absolute;
+  top: 10px; left: 0; right: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+.shootBtn {
+  width: 100%;
+  padding: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: white;
+  background: linear-gradient(135deg, #ff4d6d, #ff914d);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.35);
+  cursor: pointer;
+  transition: transform 0.05s ease, box-shadow 0.1s ease;
+}
+.shootBtn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 12px rgba(255, 77, 109, 0.5);
+}
+.shootBtn.firing {
+  animation: pulse 0.12s ease;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+
+/* Dood overlay */
+.deadOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+.deadOverlay.hidden { display: none; }
+.deadCard {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 30px 40px;
+  text-align: center;
+}
+.deadCard h2 { margin: 0 0 10px; font-size: 28px; color: var(--accent-2); }
+.deadCard p { margin: 0; color: var(--muted); }
+
+/* Haptic feedback op hit */
+body.hit-flash { animation: hitFlash 0.3s ease; }
+@keyframes hitFlash {
+  0% { background-color: #070b14; }
+  30% { background-color: #602030; }
+  100% { background-color: #070b14; }
+}
+
+/* Kleine schermen */
+@media (max-height: 640px) {
+  .joyArea { min-height: 0; }
+  .joyBox { min-height: 160px; }
+  .shootBtn { padding: 16px; font-size: 18px; }
+}
+
+/* Landscape mode (telefoon gekanteld) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .screen--play { padding: 8px; }
+  .topbar { padding: 6px 12px; font-size: 12px; }
+  .joyArea { gap: 8px; }
+  .shootBtn { padding: 14px; font-size: 16px; }
+}

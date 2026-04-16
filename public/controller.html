@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#070b14" />
+  <title>DroneWars · Controller</title>
+  <link rel="stylesheet" href="/css/controller.css" />
+</head>
+<body>
+
+  <!-- Scherm 1: lobbycode + naam invoeren -->
+  <section class="screen screen--join" id="screenJoin">
+    <div class="brand">🚁 DroneWars</div>
+    <h1>Doe mee</h1>
+    <form id="joinForm" class="joinForm">
+      <label>
+        Lobbycode
+        <input id="codeInput" type="text" inputmode="latin" maxlength="4"
+               autocomplete="off" autocapitalize="characters" placeholder="CODE" />
+      </label>
+      <label>
+        Jouw naam
+        <input id="nameInput" type="text" maxlength="16" placeholder="bv. Tom" />
+      </label>
+      <button type="submit" class="btn btn--primary">Doe mee</button>
+      <p class="err" id="joinErr"></p>
+    </form>
+  </section>
+
+  <!-- Scherm 2: wachten in lobby -->
+  <section class="screen screen--waiting hidden" id="screenWait">
+    <div class="brand">🚁 DroneWars</div>
+    <h1>In de lobby</h1>
+    <div class="waitInfo">
+      <div>Lobbycode</div>
+      <div class="code" id="waitCode">----</div>
+    </div>
+    <div class="youAre">Jij bent <strong id="youName">?</strong>
+      <span class="colorDot" id="youColor"></span>
+    </div>
+    <p class="hint">Wacht tot de host het spel start…</p>
+    <div class="spinner"></div>
+    <button id="leaveBtn" class="btn btn--ghost">Verlaat lobby</button>
+  </section>
+
+  <!-- Scherm 3: controller tijdens het spel -->
+  <section class="screen screen--play hidden" id="screenPlay">
+    <header class="topbar">
+      <span class="me">
+        <span class="colorDot" id="playColor"></span>
+        <strong id="playName">?</strong>
+      </span>
+      <span class="hp">
+        HP
+        <span class="hpBar"><span id="hpFill"></span></span>
+        <span id="hpText">100</span>
+      </span>
+    </header>
+
+    <div class="joyArea">
+      <div class="joyBox" id="joyMove">
+        <div class="joyLabel">BEWEGEN</div>
+      </div>
+      <div class="joyBox" id="joyRotate">
+        <div class="joyLabel">RICHTEN</div>
+      </div>
+    </div>
+
+    <button id="shootBtn" class="shootBtn">💥 SCHIETEN</button>
+
+    <div class="deadOverlay hidden" id="deadOverlay">
+      <div class="deadCard">
+        <h2>💀 Uitgeschakeld</h2>
+        <p>Wacht tot de ronde is afgelopen…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scherm 4: einde van het spel -->
+  <section class="screen screen--over hidden" id="screenOver">
+    <div class="brand">🚁 DroneWars</div>
+    <h1 id="overTitle">Ronde afgelopen</h1>
+    <p id="overSub"></p>
+    <p class="hint">Wacht tot de host een nieuwe ronde start…</p>
+    <div class="spinner"></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.10.2/dist/nipplejs.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/controller.js"></script>
+</body>
+</html>

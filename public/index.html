@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>DroneWars</title>
+  <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="home">
+    <header class="hero">
+      <div class="logo">🚁</div>
+      <h1>DroneWars</h1>
+      <p class="tagline">Multiplayer drone-gevechten in je browser</p>
+    </header>
+
+    <section class="panels">
+      <div class="panel panel--create">
+        <h2>Start een spel</h2>
+        <p>Maak een lobby en nodig je vrienden uit met een QR-code of lobbycode.</p>
+        <button id="createBtn" class="btn btn--primary">🎮 Nieuwe lobby</button>
+      </div>
+
+      <div class="panel panel--join">
+        <h2>Meedoen met een vriend</h2>
+        <p>Heb je een lobbycode? Voer hem hieronder in om mee te spelen op je telefoon.</p>
+        <form id="joinForm" class="joinForm">
+          <input
+            id="codeInput"
+            type="text"
+            inputmode="latin"
+            autocomplete="off"
+            autocapitalize="characters"
+            maxlength="4"
+            placeholder="CODE"
+            aria-label="Lobbycode"
+          />
+          <button type="submit" class="btn">Open controller</button>
+        </form>
+        <p class="hint">Of scan gewoon de QR-code op het spelscherm van de host.</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <small>Module 7.2 – Remote Controller · Tom</small>
+    </footer>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>
